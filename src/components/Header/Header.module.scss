@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &__logo {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    text-transform: uppercase;
+  }
+
+  &__subtitle {
+    color: #9d9d9d;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  &__menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+}
