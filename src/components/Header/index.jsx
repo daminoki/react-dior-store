@@ -12,7 +12,7 @@ const Header = () => {
         <img src={logo} alt="Logo" width={130} height={40} />
         <div>
           <h3 className={styles.header__title}>React Dior</h3>
-          <p className={styles.header__subtitle}>Магазин элитной косметики</p>
+          <p className={styles.header__subtitle}>Store элитной косметики</p>
         </div>
       </div>
       <div className={styles.header__menu}>
