@@ -12,8 +12,7 @@ const SignIn = () => {
   const [passwordType, setPasswordType] = useState('password');
   const [formValue, setFormValue] = useState({
     email: '',
-    password: '',
-    checkPassword: ''
+    password: ''
   });
 
   const handleInputChange = (e) => {

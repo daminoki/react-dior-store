@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -8,31 +8,52 @@ import './App.scss';
 import Header from './components/Header';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
+import AuthDetails from './components/AuthDetails';
 
 function App() {
-  const [authUser, setAuthUser] = useState(null);
-  console.log(authUser);
+  const [authUser, setAuthUser] = useState();
+  const [authLoading, setAuthLoading] = useState(true);
 
-  React.useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setAuthUser(user);
-      } else {
-        setAuthUser(null);
-      }
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setAuthLoading(true);
+      setAuthUser(user || {});
     });
-
-    return () => {
-      listen();
-    };
   }, []);
+
+  useEffect(() => {
+    if (authUser) setAuthLoading(false);
+  }, [authUser]);
 
   return (
     <div className="containter">
       <Routes>
         <Route path="/" element={<Header />} />
-        <Route path="/register" element={<SignUp />} />
-        <Route path="/login" element={<SignIn />} />
+
+        {!authLoading && (
+          <>
+            <Route
+              path="/register"
+              element={
+                authUser.email ? (
+                  <AuthDetails authUser={authUser} />
+                ) : (
+                  <SignUp />
+                )
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                authUser.email ? (
+                  <AuthDetails authUser={authUser} />
+                ) : (
+                  <SignIn />
+                )
+              }
+            />
+          </>
+        )}
       </Routes>
     </div>
   );
