@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useUserAuth } from '../UserAuthContext';
 
-const AnotherProtectedRoute = ({ children }) => {
+const ProtectedRegisterForm = ({ children }) => {
   const { user } = useUserAuth();
 
   console.log(123, user);
@@ -14,4 +14,4 @@ const AnotherProtectedRoute = ({ children }) => {
   }
 };
 
-export default AnotherProtectedRoute;
+export default ProtectedRegisterForm;

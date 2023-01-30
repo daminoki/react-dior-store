@@ -9,7 +9,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import AuthDetails from './components/AuthDetails';
 import ProtectedRoute from './components/ProtectedRoute';
-import AnotherProtectedRoute from './components/AnotherProtectedRoute';
+import ProtectedRegisterForm from './components/ProtectedRegisterForm';
 
 function App() {
   return (
@@ -35,17 +35,17 @@ function App() {
           <Route
             path="/"
             element={
-              <AnotherProtectedRoute>
+              <ProtectedRegisterForm>
                 <SignIn />
-              </AnotherProtectedRoute>
+              </ProtectedRegisterForm>
             }
           />
           <Route
             path="/register"
             element={
-              <AnotherProtectedRoute>
+              <ProtectedRegisterForm>
                 <SignUp />
-              </AnotherProtectedRoute>
+              </ProtectedRegisterForm>
             }
           />
         </Routes>
