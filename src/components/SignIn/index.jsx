@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router';
+import { useUserAuth } from '../UserAuthContext';
 
 import styles from './SignIn.module.scss';
-import arrow from '../../images/back-arrow.svg';
 import openPasswordIcon from '../../images/open-password.svg';
 import hidePasswordIcon from '../../images/hide-password.svg';
 
@@ -14,10 +13,11 @@ const SignIn = () => {
     email: '',
     password: ''
   });
+  const { logIn } = useUserAuth();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log();
 
     setFormValue({
       ...formValue,
@@ -25,15 +25,14 @@ const SignIn = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, formValue.email, formValue.password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    try {
+      await logIn(formValue.email, formValue.password);
+      navigate('/main-page');
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   const togglePassword = (e) => {
@@ -47,20 +46,6 @@ const SignIn = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.button__wrapper}>
-        <Link to="/">
-          <button className={styles.button}>
-            <img
-              className={styles.button__icon}
-              src={arrow}
-              alt="Go back"
-              width={22}
-              height={22}
-            />
-          </button>
-        </Link>
-        <p className={styles.button__title}>на главную</p>
-      </div>
       <h3 className={styles.form__title}>
         <span>Войдите,</span> чтобы совершать покупки
       </h3>

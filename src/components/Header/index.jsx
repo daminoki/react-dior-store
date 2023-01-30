@@ -18,7 +18,7 @@ const Header = () => {
         </div>
       </div>
       <div className={styles.header__menu}>
-        <Link to="/register">
+        <Link to="/my-profile">
           <img
             className={styles.header__icon}
             src={homeIcon}

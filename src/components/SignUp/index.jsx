@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { auth } from '../../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUserAuth } from '../UserAuthContext';
 
 import styles from './SignUp.module.scss';
-import arrow from '../../images/back-arrow.svg';
 import openPasswordIcon from '../../images/open-password.svg';
 import hidePasswordIcon from '../../images/hide-password.svg';
 
@@ -16,10 +14,11 @@ const SignUp = () => {
     password: '',
     checkPassword: ''
   });
+  const { signUp } = useUserAuth();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log();
 
     setFormValue({
       ...formValue,
@@ -27,18 +26,17 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formValue.password === formValue.checkPassword) {
-      createUserWithEmailAndPassword(auth, formValue.email, formValue.password)
-        .then((userCredential) => {
-          console.log(userCredential);
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      try {
+        await signUp(formValue.email, formValue.password);
+        navigate('/');
+      } catch (err) {
+        alert(err.message);
+      }
     } else {
-      alert('Введеные пароли не совпадают');
+      alert('Введенные пароли не совпадают');
     }
   };
 
@@ -62,20 +60,6 @@ const SignUp = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.button__wrapper}>
-        <Link to="/">
-          <button className={styles.button}>
-            <img
-              className={styles.button__icon}
-              src={arrow}
-              alt="Go back"
-              width={22}
-              height={22}
-            />
-          </button>
-        </Link>
-        <p className={styles.button__title}>на главную</p>
-      </div>
       <h3 className={styles.form__title}>
         <span>Зарегистрируйтесь,</span> чтобы совершать покупки
       </h3>
@@ -160,7 +144,7 @@ const SignUp = () => {
       </form>
       <p className={styles.form__details}>
         Уже зарегистрированы?{' '}
-        <Link className={styles.form__link} to="/login">
+        <Link className={styles.form__link} to="/">
           Войдите
         </Link>
       </p>
