@@ -6,7 +6,7 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCrGOaWIoTh_sXsjlK006zFtzZV4tv96D0',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: 'react-dior-store.firebaseapp.com',
   projectId: 'react-dior-store',
   storageBucket: 'react-dior-store.appspot.com',
