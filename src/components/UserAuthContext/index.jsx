@@ -1,39 +1,52 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut
+  signInWithEmailAndPassword
 } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { useNavigate } from 'react-router';
 
-const userAuthContext = createContext();
+export const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(localStorage.getItem('AuthToken'));
+  const navigate = useNavigate();
 
-  function logIn(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
-  }
+  const logIn = async (email, password) => {
+    try {
+      const { _tokenResponse } = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      localStorage.setItem('AuthToken', _tokenResponse.refreshToken);
+      setUser(localStorage.getItem('AuthToken'));
+      navigate('/main-page');
+    } catch (err) {
+      alert(err.message);
+    }
+  };
 
-  function signUp(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
-  }
+  const signUp = async (email, password) => {
+    try {
+      const { _tokenResponse } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      localStorage.setItem('AuthToken', _tokenResponse.refreshToken);
+      setUser(localStorage.getItem('AuthToken'));
+      navigate('/main-page');
+    } catch (err) {
+      alert(err.message);
+    }
+    return signUp(email, password);
+  };
 
   function logOut() {
-    return signOut(auth);
+    setUser(localStorage.removeItem('AuthToken'));
+    navigate('/');
   }
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log('Auth', currentuser);
-      setUser(currentuser);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
   return (
     <userAuthContext.Provider value={{ user, logIn, signUp, logOut }}>

@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router';
 import { useUserAuth } from '../UserAuthContext';
 import { Link } from 'react-router-dom';
 
@@ -6,15 +5,9 @@ import styles from './AuthDetails.module.scss';
 import arrow from '../../images/back-arrow.svg';
 
 const AuthDetails = () => {
-  const { logOut, user } = useUserAuth();
-  const navigate = useNavigate();
-  const handleLogout = async () => {
-    try {
-      await logOut();
-      navigate('/');
-    } catch (err) {
-      console.log(err.message);
-    }
+  const { logOut } = useUserAuth();
+  const handleLogout = () => {
+    logOut();
   };
 
   return (
@@ -33,9 +26,7 @@ const AuthDetails = () => {
         </Link>
         <p className={styles.button__title}>на главную</p>
       </div>
-      <p
-        className={styles.title}
-      >{`Вы вошли в приложение под логином ${user.email}`}</p>
+      <p className={styles.title}>{`Вы вошли в приложение`}</p>
       <button className={styles['sign-out-button']} onClick={handleLogout}>
         Выйти из приложения
       </button>

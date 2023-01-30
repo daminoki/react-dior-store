@@ -2,14 +2,16 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useUserAuth } from '../UserAuthContext';
 
-const ProtectedRoute = ({ children }) => {
+const AnotherProtectedRoute = ({ children }) => {
   const { user } = useUserAuth();
 
-  if (!user) {
-    return <Navigate to="/" />;
+  console.log(123, user);
+
+  if (user) {
+    return <Navigate to="/main-page" />;
   } else {
     return children;
   }
 };
 
-export default ProtectedRoute;
+export default AnotherProtectedRoute;

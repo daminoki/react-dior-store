@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useUserAuth } from '../UserAuthContext';
 
 import styles from './SignUp.module.scss';
@@ -15,7 +15,6 @@ const SignUp = () => {
     checkPassword: ''
   });
   const { signUp } = useUserAuth();
-  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,12 +28,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formValue.password === formValue.checkPassword) {
-      try {
-        await signUp(formValue.email, formValue.password);
-        navigate('/');
-      } catch (err) {
-        alert(err.message);
-      }
+      signUp(formValue.email, formValue.password);
     } else {
       alert('Введенные пароли не совпадают');
     }

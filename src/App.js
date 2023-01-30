@@ -9,6 +9,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import AuthDetails from './components/AuthDetails';
 import ProtectedRoute from './components/ProtectedRoute';
+import AnotherProtectedRoute from './components/AnotherProtectedRoute';
 
 function App() {
   return (
@@ -31,8 +32,22 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/" element={<SignIn />} />
-          <Route path="/register" element={<SignUp />} />
+          <Route
+            path="/"
+            element={
+              <AnotherProtectedRoute>
+                <SignIn />
+              </AnotherProtectedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <AnotherProtectedRoute>
+                <SignUp />
+              </AnotherProtectedRoute>
+            }
+          />
         </Routes>
       </UserAuthContextProvider>
     </div>

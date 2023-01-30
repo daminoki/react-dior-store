@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router';
 import { useUserAuth } from '../UserAuthContext';
 
 import styles from './SignIn.module.scss';
@@ -14,7 +13,6 @@ const SignIn = () => {
     password: ''
   });
   const { logIn } = useUserAuth();
-  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,12 +25,7 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await logIn(formValue.email, formValue.password);
-      navigate('/main-page');
-    } catch (err) {
-      alert(err.message);
-    }
+    logIn(formValue.email, formValue.password);
   };
 
   const togglePassword = (e) => {
