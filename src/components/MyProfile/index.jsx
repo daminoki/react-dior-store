@@ -1,10 +1,10 @@
 import { useUserAuth } from '../UserAuthContext';
 import { Link } from 'react-router-dom';
 
-import styles from './AuthDetails.module.scss';
-import arrow from '../../images/back-arrow.svg';
+import styles from './MyProfile.module.scss';
+import arrow from '../../assets/images/back-arrow.svg';
 
-const AuthDetails = () => {
+const MyProfile = () => {
   const { logOut } = useUserAuth();
   const handleLogout = () => {
     logOut();
@@ -26,7 +26,7 @@ const AuthDetails = () => {
         </Link>
         <p className={styles.button__title}>на главную</p>
       </div>
-      <p className={styles.title}>{`Вы вошли в приложение`}</p>
+      <p className={styles.title}>Вы вошли в приложение</p>
       <button className={styles['sign-out-button']} onClick={handleLogout}>
         Выйти из приложения
       </button>
@@ -34,4 +34,4 @@ const AuthDetails = () => {
   );
 };
 
-export default AuthDetails;
+export default MyProfile;

@@ -5,8 +5,6 @@ import { useUserAuth } from '../UserAuthContext';
 const ProtectedRegisterForm = ({ children }) => {
   const { user } = useUserAuth();
 
-  console.log(123, user);
-
   if (user) {
     return <Navigate to="/main-page" />;
   } else {

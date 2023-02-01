@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useUserAuth } from '../UserAuthContext';
 
 import styles from './SignIn.module.scss';
-import openPasswordIcon from '../../images/open-password.svg';
-import hidePasswordIcon from '../../images/hide-password.svg';
+import openPasswordIcon from '../../assets/images/open-password.svg';
+import hidePasswordIcon from '../../assets/images/hide-password.svg';
 
 const SignIn = () => {
   const [passwordType, setPasswordType] = useState('password');

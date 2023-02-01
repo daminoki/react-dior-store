@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Header.module.scss';
-import logo from '../../images/header-logo.png';
-import homeIcon from '../../images/home-icon.svg';
-import favoritesIcon from '../../images/favorites-icon.png';
-import cartIcon from '../../images/cart-icon.svg';
+import logo from '../../assets/images/header-logo.png';
+import homeIcon from '../../assets/images/home-icon.svg';
+import favoritesIcon from '../../assets/images/favorites-icon.png';
+import cartIcon from '../../assets/images/cart-icon.svg';
 
 const Header = () => {
   return (
