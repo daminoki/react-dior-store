@@ -23,13 +23,12 @@ const SignIn = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     logIn(formValue.email, formValue.password);
   };
 
-  const togglePassword = (e) => {
-    e.preventDefault();
+  const togglePasswordType = (e) => {
     if (passwordType === 'password') {
       setPasswordType('text');
     } else {
@@ -60,7 +59,11 @@ const SignIn = () => {
           <label className={styles.form__subtitle} htmlFor="password">
             Пароль:
           </label>
-          <button onClick={togglePassword} className={styles.form__checker}>
+          <button
+            type="button"
+            onClick={togglePasswordType}
+            className={styles.form__checker}
+          >
             <img
               src={
                 passwordType === 'password'
@@ -81,6 +84,7 @@ const SignIn = () => {
           placeholder="Введите пароль"
           value={formValue.password}
           onChange={handleInputChange}
+          minLength="6"
           required
         ></input>
         <button

@@ -25,7 +25,7 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (formValue.password === formValue.checkPassword) {
       signUp(formValue.email, formValue.password);
@@ -35,7 +35,6 @@ const SignUp = () => {
   };
 
   const togglePassword = (e) => {
-    e.preventDefault();
     if (passwordType === 'password') {
       setPasswordType('text');
     } else {
@@ -44,7 +43,6 @@ const SignUp = () => {
   };
 
   const togglePasswordCheck = (e) => {
-    e.preventDefault();
     if (checkPasswordType === 'password') {
       setCheckPasswordType('text');
     } else {
@@ -75,7 +73,11 @@ const SignUp = () => {
           <label className={styles.form__subtitle} htmlFor="password">
             Пароль:
           </label>
-          <button onClick={togglePassword} className={styles.form__checker}>
+          <button
+            type="button"
+            onClick={togglePassword}
+            className={styles.form__checker}
+          >
             <img
               src={
                 passwordType === 'password'
@@ -96,6 +98,7 @@ const SignUp = () => {
           placeholder="Введите пароль"
           value={formValue.password}
           onChange={handleInputChange}
+          minLength="6"
           required
         ></input>
         <div className={styles.form__wrapper}>
@@ -103,6 +106,7 @@ const SignUp = () => {
             Повторите пароль:
           </label>
           <button
+            type="button"
             onClick={togglePasswordCheck}
             className={styles.form__checker}
           >
@@ -126,6 +130,7 @@ const SignUp = () => {
           placeholder="Повторите пароль"
           value={formValue.checkPassword}
           onChange={handleInputChange}
+          minLength="6"
           required
         ></input>
         <button

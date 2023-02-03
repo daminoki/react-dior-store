@@ -40,7 +40,6 @@ export function UserAuthContextProvider({ children }) {
     } catch (err) {
       alert(err.message);
     }
-    return signUp(email, password);
   };
 
   function logOut() {
