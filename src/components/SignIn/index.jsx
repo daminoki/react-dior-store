@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUserAuth } from '../UserAuthContext';
+import { useForm } from 'react-hook-form';
 
 import styles from './SignIn.module.scss';
 import openPasswordIcon from '../../assets/images/open-password.svg';
@@ -13,6 +14,11 @@ const SignIn = () => {
     password: ''
   });
   const { logIn } = useUserAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,12 +29,11 @@ const SignIn = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = () => {
     logIn(formValue.email, formValue.password);
   };
 
-  const togglePasswordType = (e) => {
+  const togglePasswordType = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
     } else {
@@ -41,20 +46,31 @@ const SignIn = () => {
       <h3 className={styles.form__title}>
         <span>Войдите,</span> чтобы совершать покупки
       </h3>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}
+        autoComplete="off"
+      >
         <label className={styles.form__subtitle} htmlFor="email">
           E-mail:
         </label>
         <input
+          {...register('email', {
+            required: 'Это поле обязательно для заполнения',
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Введите корректный email адрес'
+            }
+          })}
           className={styles.form__input}
-          type="email"
           id="email"
           name="email"
           placeholder="Введите email"
           value={formValue.email}
           onChange={handleInputChange}
-          required
         ></input>
+        {errors.email?.message}
         <div className={styles.form__wrapper}>
           <label className={styles.form__subtitle} htmlFor="password">
             Пароль:
@@ -77,6 +93,13 @@ const SignIn = () => {
           </button>
         </div>
         <input
+          {...register('password', {
+            required: 'Это поле обязательно для заполнения',
+            minLength: {
+              value: 6,
+              message: 'Минимальная длина пароля 6 символов'
+            }
+          })}
           className={styles.form__input}
           type={passwordType}
           id="password"
@@ -84,13 +107,12 @@ const SignIn = () => {
           placeholder="Введите пароль"
           value={formValue.password}
           onChange={handleInputChange}
-          minLength="6"
-          required
         ></input>
+        {errors.password?.message}
         <button
           className={styles.form__button}
           type="submit"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
           Войти
         </button>

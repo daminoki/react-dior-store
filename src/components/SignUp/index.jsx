@@ -34,7 +34,7 @@ const SignUp = () => {
     }
   };
 
-  const togglePassword = (e) => {
+  const togglePassword = () => {
     if (passwordType === 'password') {
       setPasswordType('text');
     } else {
@@ -42,7 +42,7 @@ const SignUp = () => {
     }
   };
 
-  const togglePasswordCheck = (e) => {
+  const togglePasswordCheck = () => {
     if (checkPasswordType === 'password') {
       setCheckPasswordType('text');
     } else {
