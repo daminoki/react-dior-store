@@ -5,10 +5,14 @@ import { useUserAuth } from '../UserAuthContext';
 const ProtectedRoute = ({ children }) => {
   const { user } = useUserAuth();
 
-  if (!user) {
-    return <Navigate to="/" />;
-  } else {
+  if (user && children.props.isSignRoute) {
+    return <Navigate to="/main-page" />;
+  } else if (!user && children.props.isSignRoute) {
     return children;
+  } else if (user && !children.props.isSignRoute) {
+    return children;
+  } else if (!user && !children.props.isSignRoute) {
+    return <Navigate to="/" />;
   }
 };
 

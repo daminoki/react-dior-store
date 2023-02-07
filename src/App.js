@@ -9,7 +9,6 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import MyProfile from './components/MyProfile';
 import ProtectedRoute from './components/ProtectedRoute';
-import ProtectedRegisterForm from './components/ProtectedRegisterForm';
 import MainPage from './pages/MainPage';
 
 function App() {
@@ -36,7 +35,7 @@ function App() {
             path="/main-page"
             element={
               <ProtectedRoute>
-                <MainPage products={products} />
+                <MainPage products={products} isSignRoute={false} />
               </ProtectedRoute>
             }
           />
@@ -44,24 +43,24 @@ function App() {
             path="/my-profile"
             element={
               <ProtectedRoute>
-                <MyProfile />
+                <MyProfile isSignRoute={false} />
               </ProtectedRoute>
             }
           />
           <Route
             path="/"
             element={
-              <ProtectedRegisterForm>
-                <SignIn />
-              </ProtectedRegisterForm>
+              <ProtectedRoute>
+                <SignIn isSignRoute={true} />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/register"
             element={
-              <ProtectedRegisterForm>
-                <SignUp />
-              </ProtectedRegisterForm>
+              <ProtectedRoute>
+                <SignUp isSignRoute={true} />
+              </ProtectedRoute>
             }
           />
         </Routes>
