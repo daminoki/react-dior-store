@@ -13,7 +13,6 @@ import MainPage from './pages/MainPage';
 
 function App() {
   const [products, setProducts] = useState([]);
-
   const fetchItems = async () => {
     const { data } = await getItems();
     setProducts(data);
@@ -35,7 +34,7 @@ function App() {
             path="/main-page"
             element={
               <ProtectedRoute>
-                <MainPage products={products} isSignRoute={false} />
+                <MainPage products={products} />
               </ProtectedRoute>
             }
           />
@@ -50,16 +49,16 @@ function App() {
           <Route
             path="/"
             element={
-              <ProtectedRoute>
-                <SignIn isSignRoute={true} />
+              <ProtectedRoute isSignRoute={true}>
+                <SignIn />
               </ProtectedRoute>
             }
           />
           <Route
             path="/register"
             element={
-              <ProtectedRoute>
-                <SignUp isSignRoute={true} />
+              <ProtectedRoute isSignRoute={true}>
+                <SignUp />
               </ProtectedRoute>
             }
           />
