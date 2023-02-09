@@ -15,6 +15,7 @@ const MainPage = ({ products }) => {
   return (
     <>
       <Header />
+      <p className={styles.title}>Все продукты для макияжа</p>
       <div className={styles['cards-container']}>{renderProducts()}</div>
     </>
   );

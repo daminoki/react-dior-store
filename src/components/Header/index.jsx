@@ -38,6 +38,27 @@ const Header = () => {
           <img src={cartIcon} alt="Cart" width={18} height={18} />
         </button>
       </div>
+      <div className={styles['header__mob-menu']}>
+        <Link to="/my-profile">
+          <img
+            className={styles.header__icon}
+            src={homeIcon}
+            alt="Home"
+            width={18}
+            height={18}
+          />
+        </Link>
+        <img
+          className={styles.header__icon}
+          src={favoritesIcon}
+          alt="Favorites"
+          width={20}
+          height={18}
+        />
+        <button>
+          <img src={cartIcon} alt="Cart" width={18} height={18} />
+        </button>
+      </div>
     </div>
   );
 };
