@@ -9,6 +9,10 @@ body {
   @media screen and (max-width: 768px) {
     padding: 20px 25px;
   }
+
+  @media screen and (max-width: 425px) {
+    padding: 0;
+  }
 }
 
 * {
