@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import priceFormat from '../../utils/priceFormat';
 
 import styles from './Card.module.scss';
 import favoriteBtn from '../../assets/images/favorite-btn-unliked.svg';
 
 const Card = ({ product }) => {
+  const [chosenType, setChosenType] = useState(0);
+
+  const handleClickType = (i) => {
+    setChosenType(i);
+  };
+
   return (
     <div className={styles.container}>
       <button className={styles['favorite-btn']} aria-label="Add to favorite">
@@ -26,8 +32,19 @@ const Card = ({ product }) => {
       <div className={styles['details-wrapper']}>
         <p className={styles.price}>{priceFormat(product.price)}</p>
         <div className={styles['product-type']}>
-          <button className={styles['product-type-btn']}>30 мл</button>
-          <button className={styles['product-type-btn']}>50 мл</button>
+          {product.types.map((type, i) => (
+            <button
+              key={i}
+              className={
+                chosenType === i
+                  ? styles['product-type-btn_active']
+                  : styles['product-type-btn']
+              }
+              onClick={() => handleClickType(i)}
+            >
+              {type}
+            </button>
+          ))}
         </div>
         <button className={styles['order-btn']}>добавить в корзину</button>
       </div>

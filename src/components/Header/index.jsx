@@ -11,7 +11,13 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.header__logo}>
-        <img src={logo} alt="Logo" width={130} height={40} />
+        <img
+          className={styles['header__logo-img']}
+          src={logo}
+          alt="Logo"
+          width={130}
+          height={40}
+        />
         <div>
           <h3 className={styles.header__title}>React Dior</h3>
           <p className={styles.header__subtitle}>Магазин элитной косметики</p>
