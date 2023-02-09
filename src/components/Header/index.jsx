@@ -6,6 +6,9 @@ import logo from '../../assets/images/header-logo.png';
 import homeIcon from '../../assets/images/home-icon.svg';
 import favoritesIcon from '../../assets/images/favorites-icon.png';
 import cartIcon from '../../assets/images/cart-icon.svg';
+import homeIconMob from '../../assets/images/home-icon-white.svg';
+import favoritesIconMob from '../../assets/images/favorites-icon-white.svg';
+import cartIconMob from '../../assets/images/cart-icon-white.svg';
 
 const Header = () => {
   return (
@@ -48,7 +51,7 @@ const Header = () => {
         <Link to="/my-profile">
           <img
             className={styles.header__icon}
-            src={homeIcon}
+            src={homeIconMob}
             alt="Home"
             width={18}
             height={18}
@@ -56,13 +59,13 @@ const Header = () => {
         </Link>
         <img
           className={styles.header__icon}
-          src={favoritesIcon}
+          src={favoritesIconMob}
           alt="Favorites"
           width={20}
           height={18}
         />
         <button>
-          <img src={cartIcon} alt="Cart" width={18} height={18} />
+          <img src={cartIconMob} alt="Cart" width={18} height={18} />
         </button>
       </div>
     </div>
