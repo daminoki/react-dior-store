@@ -1,5 +1,3 @@
-# To open project:
+# Link: https://react-dior-store.web.app
 
-clone repository
 
-run ```npm start``` command
