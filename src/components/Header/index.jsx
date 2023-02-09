@@ -53,19 +53,19 @@ const Header = () => {
             className={styles.header__icon}
             src={homeIconMob}
             alt="Home"
-            width={18}
-            height={18}
+            width={22}
+            height={22}
           />
         </Link>
         <img
           className={styles.header__icon}
           src={favoritesIconMob}
           alt="Favorites"
-          width={20}
-          height={18}
+          width={22}
+          height={20}
         />
         <button>
-          <img src={cartIconMob} alt="Cart" width={18} height={18} />
+          <img src={cartIconMob} alt="Cart" width={22} height={22} />
         </button>
       </div>
     </div>

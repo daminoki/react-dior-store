@@ -25,6 +25,10 @@
     font-weight: 500;
     cursor: pointer;
 
+    &:hover {
+      background-color: #fff;
+    }
+
     @media screen and (max-width: 768px) {
       min-width: fit-content;
     }
