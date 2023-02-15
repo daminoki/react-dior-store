@@ -51,25 +51,26 @@
   align-items: center;
 }
 
-.product-type-btn_active {
-  background: #fff;
-  width: 100%;
-  padding: 5px 15px;
-  border-radius: 5px;
-  font-size: 14px;
-  line-height: 1.2;
-
-  &:hover {
-    box-shadow: 1px 1px 3px rgb(0 0 0 / 50%);
-  }
-}
-
 .product-type-btn {
   width: 100%;
   padding: 5px 15px;
   border-radius: 5px;
   font-size: 14px;
   line-height: 1.2;
+
+  &_active {
+    background: #fff;
+    width: 100%;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.2;
+    transition: box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      box-shadow: 1px 1px 5px rgb(0 0 0 / 10%);
+    }
+  }
 }
 
 .order-btn {
