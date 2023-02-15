@@ -10,7 +10,7 @@ import homeIconMob from '../../assets/images/home-icon-white.svg';
 import favoritesIconMob from '../../assets/images/favorites-icon-white.svg';
 import cartIconMob from '../../assets/images/cart-icon-white.svg';
 
-const Header = () => {
+const Header = ({ handleCartClick }) => {
   return (
     <div className={styles.header}>
       <div className={styles.header__logo}>
@@ -44,7 +44,13 @@ const Header = () => {
           height={18}
         />
         <button>
-          <img src={cartIcon} alt="Cart" width={18} height={18} />
+          <img
+            onClick={handleCartClick}
+            src={cartIcon}
+            alt="Cart"
+            width={18}
+            height={18}
+          />
         </button>
       </div>
       <div className={styles['header__mob-menu']}>
