@@ -18,15 +18,17 @@
 
   &__list-item {
     padding: 10px 20px;
-    background-color: #f3f3f3;
+    background-color: #eee;
     border-radius: 25px;
     font-size: 14px;
     line-height: 1.2;
     font-weight: 500;
     cursor: pointer;
+    color: #000;
+    transition: all 0.15s ease-in-out;
 
     &:hover {
-      background-color: #fff;
+      background-color: #888b8d81;
     }
 
     @media screen and (max-width: 768px) {
